@@ -17,9 +17,10 @@ class Search extends Component {
   }
 
   getNewBooks = (event) => {
-    this.setState({query: event.target.value.trim()})
-    if (this.state.query) {
-      BooksAPI.search(this.state.query).then((books) => {
+    const query = event.target.value
+    this.setState({query: query})
+    if (query) {
+      BooksAPI.search(query).then((books) => {
         books.length > 0 ? this.setState({newBooks: books, error: false}) : this.setState({newBooks: [], error: true})
       })
     } else {
